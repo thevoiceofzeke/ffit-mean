@@ -1,12 +1,16 @@
 var mongoose = require('mongoose');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
+var passportLocalMongoose = require('passport-local-mongoose');
+
 
 var UserSchema = new mongoose.Schema({
 	username: {type: String, lowercase: true, unique: true},
 	hash: String,
 	salt: String
 });
+
+UserSchema.plugin(passportLocalMongoose);
 
 UserSchema.methods.setPassword = function(password) {
 	this.salt = crypto.randomBytes(16).toString('hex');

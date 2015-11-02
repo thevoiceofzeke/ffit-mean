@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 require('./models/Posts');
 require('./models/Comments');
-require('./models/Users');
+require('./models/User');
 require('./config/passport');
 mongoose.connect('mongodb://localhost/ff_db');
 
@@ -11,7 +13,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var passport = require('passport');
+
 
 
 var routes = require('./routes/index');

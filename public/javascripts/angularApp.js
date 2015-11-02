@@ -36,24 +36,25 @@ app.controller('PostsCtrl', ['$scope', 'posts', 'post', 'auth', function($scope,
 	};
 }]);
 
-app.controller('AuthCtrl', ['$scope', '$state', 'auth', function($scope, $state, auth) {
-	$scope.user = {};
+app.controller('AuthCtrl', ['$scope', '$state', 'auth', function($scope, $state, auth){
+  $scope.user = {};
 
-	$scope.register = function() {
-		auth.register($scope.user).error(function(error) {
-			$scope.error = error;
-		}).then(function() {
-			$state.go('home');
-		});
-	};
+  $scope.register = function(){
+    auth.register($scope.user).error(function(error){
+      $scope.error = error;
+      console.log('error registering user in angularApp.js: ' + error);
+    }).then(function(){
+      $state.go('home');
+    });
+  };
 
-	$scope.logIn = function() {
-		auth.logIn($scope.user).error(function(error) {
-			$scope.error = error;
-		}).then(function() {
-			$state.go('home');
-		});
-	};
+  $scope.logIn = function(){
+    auth.logIn($scope.user).error(function(error){
+      $scope.error = error;
+    }).then(function(){
+      $state.go('home');
+    });
+  };
 }]);
 
 app.controller('NavCtrl', [
@@ -108,17 +109,14 @@ app.factory('posts', ['$http', 'auth', function($http, auth) {
 	  });
 	};
 	return o;
-}]);
-
-// AUTHORIZATION SERVICE
-app.factory('auth', ['$http', '$window', function($http, $window){
+}]).factory('auth', ['$http', '$window', function($http, $window){
    	var auth = {};
    	auth.saveToken = function (token){
-  		$window.localStorage['flapper-news-token'] = token;
+  		$window.localStorage['fantasy-fitness-token'] = token;
 	};
 
 	auth.getToken = function (){
-	  	return $window.localStorage['flapper-news-token'];
+	  	return $window.localStorage['fantasy-fitness-token'];
 	};
 	auth.isLoggedIn = function(){
 	  var token = auth.getToken();
@@ -150,7 +148,7 @@ app.factory('auth', ['$http', '$window', function($http, $window){
 	  });
 	};
 	auth.logOut = function(){
-  		$window.localStorage.removeItem('flapper-news-token');
+  		$window.localStorage.removeItem('fantasy-fitness-token');
 	};
   return auth;
 }]);

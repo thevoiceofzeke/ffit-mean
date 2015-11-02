@@ -4,8 +4,8 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
-var passport = require('passport');
 var User = mongoose.model('User');
+var passport = require('passport');
 var jwt = require('express-jwt');
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
@@ -105,8 +105,10 @@ router.post('/register', function(req, res, next){
   user.setPassword(req.body.password)
 
   user.save(function (err){
-    if(err){ return next(err); }
-
+    if(err){ 
+      console.log('error occurred in user.save');
+      return next(err); 
+    }
     return res.json({token: user.generateJWT()})
   });
 });
