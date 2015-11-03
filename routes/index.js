@@ -39,7 +39,9 @@ router.param('comment', function(req, res, next, id) {
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Fantasy Fitness' });
 });
-
+//router.get('/scoreboard', function(req, res, next) {
+//  // DO STUFF RELATED TO SCOREBOARD
+//});
 
 // GET posts page
 router.get('/posts', function(req, res, next) {

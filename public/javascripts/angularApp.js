@@ -155,13 +155,17 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 	$stateProvider
 		.state('home', {
 		  url: '/home',
-		  templateUrl: '/home.html',
+		  templateUrl: 'templates/home.html',
 		  controller: 'MainCtrl',
 		  resolve: {
 		    postPromise: ['posts', function(posts){
 		      return posts.getAll();
 		    }]
 		  }
+		})
+		.state('scoreboard', {
+			url: '/scoreboard',
+			templateUrl: '/templates/scoreboard.html'
 		})
 		.state('posts', {
 		  url: '/posts/{id}',
@@ -192,11 +196,8 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		      $state.go('home');
 		    }
 		  }]
-	});
+		});
 
 	$urlRouterProvider.otherwise('home');
-	// $urlRouterProvider.otherwise( function($injector, $location) {
- //            var $state = $injector.get('$state');
- //            $state.go('home');
- //     });
+
 }]);
