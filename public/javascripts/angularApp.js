@@ -25,7 +25,7 @@ app.controller('PostsCtrl', ['$scope', 'posts', 'post', 'auth', function($scope,
 	  if($scope.body === '') { return; }
 	  posts.addComment(post._id, {
 	    body: $scope.body,
-	    author: 'user',
+	    author: 'user'
 	  }).success(function(comment) {
 	    $scope.post.comments.push(comment);
 	  });
@@ -41,10 +41,11 @@ app.controller('AuthCtrl', ['$scope', '$state', 'auth', function($scope, $state,
 
   $scope.register = function(){
     auth.register($scope.user).error(function(error){
-      $scope.error = error;
-      console.log('error registering user in angularApp.js: ' + error);
+		console.log('$scope.register (ERROR BLOCK) --  user: ' + $scope.user + ', ' + $scope.user.username + ', ' + $scope.user.password);
+		console.log('$scope.register (ERROR BLOCK) -- error: ' + error);
+		$scope.error = error;
     }).then(function(){
-      $state.go('home');
+      $state.go($state.home);
     });
   };
 
@@ -57,10 +58,7 @@ app.controller('AuthCtrl', ['$scope', '$state', 'auth', function($scope, $state,
   };
 }]);
 
-app.controller('NavCtrl', [
-'$scope',
-'auth',
-function($scope, auth){
+app.controller('NavCtrl', ['$scope', 'auth', function($scope, auth) {
   $scope.isLoggedIn = auth.isLoggedIn;
   $scope.currentUser = auth.currentUser;
   $scope.logOut = auth.logOut;
@@ -81,7 +79,7 @@ app.factory('posts', ['$http', 'auth', function($http, auth) {
   	};
   	o.create = function(post) {
 	  return $http.post('/posts', post, {
-	    headers: {Authorization: 'Bearer '+auth.getToken()}
+	    headers: {Authorization: 'Bearer '+ auth.getToken()}
 	  }).success(function(data){
 	    o.posts.push(data);
 	  });
@@ -89,7 +87,7 @@ app.factory('posts', ['$http', 'auth', function($http, auth) {
 
 	o.upvote = function(post) {
 	  return $http.put('/posts/' + post._id + '/upvote', null, {
-	    headers: {Authorization: 'Bearer '+auth.getToken()}
+	    headers: {Authorization: 'Bearer '+ auth.getToken()}
 	  }).success(function(data){
 	    post.upvotes += 1;
 	  });
@@ -109,10 +107,13 @@ app.factory('posts', ['$http', 'auth', function($http, auth) {
 	  });
 	};
 	return o;
-}]).factory('auth', ['$http', '$window', function($http, $window){
+}]);
+
+app.factory('auth', ['$http', '$window', function($http, $window){
    	var auth = {};
    	auth.saveToken = function (token){
   		$window.localStorage['fantasy-fitness-token'] = token;
+		console.log('token in storage: ' + $window.localStorage['fantasy-fitness-token']);
 	};
 
 	auth.getToken = function (){
@@ -138,8 +139,14 @@ app.factory('posts', ['$http', 'auth', function($http, auth) {
 	  }
 	};
 	auth.register = function(user){
+		console.log('auth.register -- user: ' + user);
+		console.log('auth.register -- user properties: ' + Object.getOwnPropertyNames(user));
+		console.log('auth.register -- username: ' + user.username);
+		console.log('auth.register -- password: ' + user.password);
 	  return $http.post('/register', user).success(function(data){
-	    auth.saveToken(data.token);
+		  // DOESN'T MAKE IT THIS FAR (500 error)
+		  auth.saveToken(data.token);
+		  console.log('saving token: ' + data.token);
 	  });
 	};
 	auth.logIn = function(user){
@@ -181,7 +188,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		  controller: 'AuthCtrl',
 		  onEnter: ['$state', 'auth', function($state, auth){
 		    if(auth.isLoggedIn()){
-		      $state.go('home');
+		      $state.go($state.home);
 		    }
 		  }]
 		})
@@ -191,7 +198,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		  controller: 'AuthCtrl',
 		  onEnter: ['$state', 'auth', function($state, auth){
 		    if(auth.isLoggedIn()){
-		      $state.go('home');
+		      $state.go($state.home);
 		    }
 		  }]
 	});
