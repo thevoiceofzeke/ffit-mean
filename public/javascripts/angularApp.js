@@ -25,7 +25,7 @@ app.controller('PostsCtrl', ['$scope', 'posts', 'post', 'auth', function($scope,
 	  if($scope.body === '') { return; }
 	  posts.addComment(post._id, {
 	    body: $scope.body,
-	    author: 'user',
+	    author: 'user'
 	  }).success(function(comment) {
 	    $scope.post.comments.push(comment);
 	  });
@@ -40,9 +40,8 @@ app.controller('AuthCtrl', ['$scope', '$state', 'auth', function($scope, $state,
   $scope.user = {};
 
   $scope.register = function(){
-    auth.register($scope.user).error(function(error){
-      $scope.error = error;
-      console.log('error registering user in angularApp.js: ' + error);
+    auth.register($scope.user).error(function(error) {
+		$scope.error = error;
     }).then(function(){
       $state.go('home');
     });
@@ -57,10 +56,7 @@ app.controller('AuthCtrl', ['$scope', '$state', 'auth', function($scope, $state,
   };
 }]);
 
-app.controller('NavCtrl', [
-'$scope',
-'auth',
-function($scope, auth){
+app.controller('NavCtrl', ['$scope', 'auth', function($scope, auth) {
   $scope.isLoggedIn = auth.isLoggedIn;
   $scope.currentUser = auth.currentUser;
   $scope.logOut = auth.logOut;
@@ -81,7 +77,7 @@ app.factory('posts', ['$http', 'auth', function($http, auth) {
   	};
   	o.create = function(post) {
 	  return $http.post('/posts', post, {
-	    headers: {Authorization: 'Bearer '+auth.getToken()}
+	    headers: {Authorization: 'Bearer '+ auth.getToken()}
 	  }).success(function(data){
 	    o.posts.push(data);
 	  });
@@ -89,7 +85,7 @@ app.factory('posts', ['$http', 'auth', function($http, auth) {
 
 	o.upvote = function(post) {
 	  return $http.put('/posts/' + post._id + '/upvote', null, {
-	    headers: {Authorization: 'Bearer '+auth.getToken()}
+	    headers: {Authorization: 'Bearer '+ auth.getToken()}
 	  }).success(function(data){
 	    post.upvotes += 1;
 	  });
@@ -109,7 +105,9 @@ app.factory('posts', ['$http', 'auth', function($http, auth) {
 	  });
 	};
 	return o;
-}]).factory('auth', ['$http', '$window', function($http, $window){
+}]);
+
+app.factory('auth', ['$http', '$window', function($http, $window){
    	var auth = {};
    	auth.saveToken = function (token){
   		$window.localStorage['fantasy-fitness-token'] = token;
@@ -137,10 +135,10 @@ app.factory('posts', ['$http', 'auth', function($http, auth) {
 	    return payload.username;
 	  }
 	};
-	auth.register = function(user){
+	auth.register = function(user) {
 	  return $http.post('/register', user).success(function(data){
-	    auth.saveToken(data.token);
-	  });
+		  auth.saveToken(data.token);
+	  }).error(function(err, req, res, next) {alert('auth.register (ERROR BLOCK) -- error: ' + err);});
 	};
 	auth.logIn = function(user){
 	  return $http.post('/login', user).success(function(data){
