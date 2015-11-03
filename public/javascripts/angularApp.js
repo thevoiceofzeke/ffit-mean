@@ -40,12 +40,10 @@ app.controller('AuthCtrl', ['$scope', '$state', 'auth', function($scope, $state,
   $scope.user = {};
 
   $scope.register = function(){
-    auth.register($scope.user).error(function(error){
-		console.log('$scope.register (ERROR BLOCK) --  user: ' + $scope.user + ', ' + $scope.user.username + ', ' + $scope.user.password);
-		console.log('$scope.register (ERROR BLOCK) -- error: ' + error);
+    auth.register($scope.user).error(function(error) {
 		$scope.error = error;
     }).then(function(){
-      $state.go($state.home);
+      $state.go('home');
     });
   };
 
@@ -113,7 +111,6 @@ app.factory('auth', ['$http', '$window', function($http, $window){
    	var auth = {};
    	auth.saveToken = function (token){
   		$window.localStorage['fantasy-fitness-token'] = token;
-		console.log('token in storage: ' + $window.localStorage['fantasy-fitness-token']);
 	};
 
 	auth.getToken = function (){
@@ -138,16 +135,10 @@ app.factory('auth', ['$http', '$window', function($http, $window){
 	    return payload.username;
 	  }
 	};
-	auth.register = function(user){
-		console.log('auth.register -- user: ' + user);
-		console.log('auth.register -- user properties: ' + Object.getOwnPropertyNames(user));
-		console.log('auth.register -- username: ' + user.username);
-		console.log('auth.register -- password: ' + user.password);
+	auth.register = function(user) {
 	  return $http.post('/register', user).success(function(data){
-		  // DOESN'T MAKE IT THIS FAR (500 error)
 		  auth.saveToken(data.token);
-		  console.log('saving token: ' + data.token);
-	  });
+	  }).error(function(err, req, res, next) {alert('auth.register (ERROR BLOCK) -- error: ' + err);});
 	};
 	auth.logIn = function(user){
 	  return $http.post('/login', user).success(function(data){
@@ -188,7 +179,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		  controller: 'AuthCtrl',
 		  onEnter: ['$state', 'auth', function($state, auth){
 		    if(auth.isLoggedIn()){
-		      $state.go($state.home);
+		      $state.go('home');
 		    }
 		  }]
 		})
@@ -198,7 +189,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		  controller: 'AuthCtrl',
 		  onEnter: ['$state', 'auth', function($state, auth){
 		    if(auth.isLoggedIn()){
-		      $state.go($state.home);
+		      $state.go('home');
 		    }
 		  }]
 	});

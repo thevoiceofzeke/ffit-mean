@@ -94,20 +94,16 @@ router.post('/posts/:post/comments', auth, function(req, res, next) {
 
 // POST to user registration
 router.post('/register', function(req, res, next){
-  console.log('request body sent to router.post(\'register\'): ' + req.body);
   if(!req.body.username || !req.body.password){
     return res.status(400).json({message: 'Please fill out all fields'});
   }
-  console.log('username in router.post: ' + req.body.username);
-  console.log('password in router.post: ' + req.body.password);
   var user = new User();
 
   user.username = req.body.username;
   user.setPassword(req.body.password);
 
   user.save(function (err){
-    if(err){ 
-      console.log('error occurred in user.save');
+    if(err){
       return next(err); 
     }
     return res.json({token: user.generateJWT()})
