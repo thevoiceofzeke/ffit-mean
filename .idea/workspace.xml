@@ -2,23 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a91cbeb-1897-4d5a-b01b-435699e2b484" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/Fitlog.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/controllers/auth.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/controllers/fitlog.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/controllers/home.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/controllers/matchup.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/controllers/navigation.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/javascripts/scoreboard.js" afterPath="$PROJECT_DIR$/public/javascripts/controllers/scoreboard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/User.js" afterPath="$PROJECT_DIR$/models/User.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/bonuses.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/rules.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/scoring.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/tabatas.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/angularApp.js" afterPath="$PROJECT_DIR$/public/javascripts/angularApp.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/fitlog.html" afterPath="$PROJECT_DIR$/public/templates/fitlog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/dwitter2.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/dwitter2.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/home.html" afterPath="$PROJECT_DIR$/public/templates/home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/controllers/home.js" afterPath="$PROJECT_DIR$/public/javascripts/controllers/home.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.ejs" afterPath="$PROJECT_DIR$/views/index.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/login.html" afterPath="$PROJECT_DIR$/public/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/register.html" afterPath="$PROJECT_DIR$/public/templates/register.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/scoreboard.html" afterPath="$PROJECT_DIR$/public/templates/scoreboard.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -43,6 +37,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/controllers/home.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/templates/home.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.875">
+              <caret line="3" column="10" selection-start-line="1" selection-start-column="4" selection-end-line="3" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="angularApp.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/angularApp.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="149" column="50" selection-start-line="149" selection-start-column="50" selection-end-line="149" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -53,51 +77,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/controllers/home.js">
+      <file leaf-file-name="tabatas.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/templates/tabatas.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.330033">
+              <caret line="20" column="66" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/templates/home.html">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24752475">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="105" column="30" selection-start-line="105" selection-start-column="30" selection-end-line="105" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="angularApp.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/angularApp.js">
+      <file leaf-file-name="bonuses.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/templates/bonuses.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="120" column="57" selection-start-line="120" selection-start-column="57" selection-end-line="120" selection-end-column="57" />
+            <state vertical-scroll-proportion="-5.625">
+              <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Fitlog.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/Fitlog.js">
+      <file leaf-file-name="error.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/error.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Posts.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/Posts.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -113,23 +127,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fitlog.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/templates/fitlog.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.5">
-              <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Html5" />
         <option value="JavaScript File" />
+        <option value="Html5" />
       </list>
     </option>
   </component>
@@ -169,17 +173,21 @@
         <option value="$PROJECT_DIR$/public/templates/navigation.html" />
         <option value="$PROJECT_DIR$/public/javascripts/controllers/auth.js" />
         <option value="$PROJECT_DIR$/public/javascripts/controllers/navigation.js" />
-        <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
         <option value="$PROJECT_DIR$/public/javascripts/controllers/scoreboard.js" />
-        <option value="$PROJECT_DIR$/views/index.ejs" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/angularApp.js" />
         <option value="$PROJECT_DIR$/models/Fitlog.js" />
         <option value="$PROJECT_DIR$/public/templates/fitlog.html" />
         <option value="$PROJECT_DIR$/public/javascripts/controllers/fitlog.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/controllers/home.js" />
+        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/public/templates/home.html" />
+        <option value="$PROJECT_DIR$/public/templates/rules.html" />
+        <option value="$PROJECT_DIR$/public/javascripts/controllers/home.js" />
+        <option value="$PROJECT_DIR$/public/templates/scoring.html" />
+        <option value="$PROJECT_DIR$/views/index.ejs" />
+        <option value="$PROJECT_DIR$/public/templates/bonuses.html" />
+        <option value="$PROJECT_DIR$/public/javascripts/angularApp.js" />
+        <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
+        <option value="$PROJECT_DIR$/public/templates/tabatas.html" />
       </list>
     </option>
   </component>
@@ -397,8 +405,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/javascripts/controllers" />
       <recent name="$PROJECT_DIR$/public/javascripts" />
+      <recent name="$PROJECT_DIR$/public/javascripts/controllers" />
       <recent name="$PROJECT_DIR$/public/templates" />
     </key>
   </component>
@@ -678,12 +686,12 @@
       <updated>1446490348525</updated>
       <workItem from="1446490350351" duration="4806000" />
       <workItem from="1446564584152" duration="122000" />
-      <workItem from="1446564717495" duration="28118000" />
+      <workItem from="1446564717495" duration="33194000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33046000" />
+    <option name="totallyTimeSpent" value="38122000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1053" extended-state="0" />
@@ -868,14 +876,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/error.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/passport.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -934,29 +934,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.7777777">
-          <caret line="96" column="27" selection-start-line="96" selection-start-column="27" selection-end-line="96" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/controllers/scoreboard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.ejs">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.125">
-          <caret line="37" column="10" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -977,14 +958,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46357617">
-          <caret line="28" column="66" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/Comments.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.096463025">
@@ -997,22 +970,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="79" column="29" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/angularApp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="120" column="57" selection-start-line="120" selection-start-column="57" selection-end-line="120" selection-end-column="57" />
           <folding />
         </state>
       </provider>
@@ -1033,14 +990,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/controllers/fitlog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.01650165">
@@ -1049,18 +998,109 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.03311258">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/controllers/fitlog.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/templates/rules.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.0">
+          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/controllers/home.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/templates/scoring.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22442244">
+          <caret line="54" column="64" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/error.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.ejs">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.0">
+          <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="29" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/angularApp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="149" column="50" selection-start-line="149" selection-start-column="50" selection-end-line="149" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/templates/bonuses.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.625">
+          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24752475">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state vertical-scroll-proportion="-1.875">
+          <caret line="3" column="10" selection-start-line="1" selection-start-column="4" selection-end-line="3" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="105" column="30" selection-start-line="105" selection-start-column="30" selection-end-line="105" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/templates/tabatas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.330033">
+          <caret line="20" column="66" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
           <folding />
         </state>
       </provider>

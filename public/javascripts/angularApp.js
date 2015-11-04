@@ -1,4 +1,4 @@
-var app = angular.module('fantasyFitness', ['ui.router']);
+var app = angular.module('fantasyFitness', ['ui.router', 'ui.bootstrap']);
 
 app.controller('PostsCtrl', ['$scope', 'posts', 'post', 'auth', function($scope, posts, post, auth) {
 	$scope.isLoggedIn = auth.isLoggedIn;
@@ -144,6 +144,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		.state('scoreboard', {
 			url: '/scoreboard',
 			templateUrl: '/templates/scoreboard.html'
+		})
+		.state('tabatas', {
+			url: '/tabatas',
+			templateUrl: '/templates/tabatas.html'
 		})
 		.state('matchup', {
 			url: '/matchup',
