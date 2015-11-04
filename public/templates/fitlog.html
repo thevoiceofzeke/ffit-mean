@@ -30,35 +30,41 @@
                     </thead>
                     <tbody>
                     <tr><td colspan="9" class="label-section"><h4>Hourly</h4></td></tr>
-                    <tr ng-repeat="activity in activitiesHourly" class="row-activity" data-categoryId="{{ activity.categoryId }}">
+                    <tr ng-repeat="activity in activitiesHourly" class="row-activity row-{{activity.activityId}}"
+                        data-activityId="{{ activity.activityId }}"
+                        data-activityValue="{{ activity.activityValue }}">
                         <td class="cell-activity"><span class="label-category">{{ activity.label }}</span>
                             <br><span class="label-description">{{ activity.description }}</span></td>
                         <td class="cell-number" ng-repeat="date in dates">
-                            <input data-pointsvalue="{{ activity.categoryId }}"
+                            <input data-pointsvalue="{{ activity.activityValue }}" ng-model="input[$index]" ng-change="updateRow(activity.activityValue, activity.activityId)"
                                    class="form-control input-number"
                                    type="number">
                         </td>
-                        <td class="cell-points" ng-bind="computeRow(activity.categoryId)"></td>
+                        <td class="cell-points total-{{activity.activityId}}"></td>
                     </tr>
                     <tr><td colspan="9" class="label-section"><h4>Individual Movements</h4></td></tr>
-                    <tr ng-repeat="activity in activitiesIndividual" class="row-activity" data-categoryId="{{ activity.categoryId }}">
+                    <tr ng-repeat="activity in activitiesIndividual" class="row-activity row-{{activity.activityId}}"
+                        data-activityId="{{ activity.activityId }}"
+                        data-activityValue="{{ activity.activityValue }}">
                         <td class="cell-activity"><span class="label-category">{{ activity.label }}</span>
                             <br><span class="label-description">{{ activity.description }}</span></td>
                         <td class="cell-number" ng-repeat="date in dates">
-                            <input data-pointsvalue="{{ activity.categoryId }}"
+                            <input data-pointsvalue="{{ activity.activityValue }}" ng-model="input[$index]" ng-change="updateRow(activity.activityValue, activity.activityId)"
                                    class="form-control input-number"
                                    type="number"></td>
-                        <td class="cell-points" ng-bind="computeRow(activity.categoryId)"></td>
+                        <td class="cell-points total-{{activity.activityId}}"></td>
                     </tr>
                     <tr><td colspan="9" class="label-section"><h4>Bonuses</h4></td></tr>
-                    <tr ng-repeat="activity in activitiesBonus" class="row-activity" data-categoryId="{{ activity.categoryId }}">
+                    <tr ng-repeat="activity in activitiesBonus" class="row-activity row-{{activity.activityId}}"
+                        data-activityId="{{ activity.activityId }}"
+                        data-activityValue="{{ activity.activityValue }}">
                         <td class="cell-activity"><span class="label-category">{{ activity.label }}</span>
                             <br><span class="label-description">{{ activity.description }}</span></td>
                         <td class="cell-number" ng-repeat="date in dates">
-                            <input data-pointsvalue="{{ activity.categoryId }}"
+                            <input data-pointsvalue="{{ activity.activityValue }}" ng-model="input[$index]" ng-change="updateRow(activity.activityValue, activity.activityId)"
                                    class="form-control input-number"
                                    type="number"></td>
-                        <td class="cell-points" ng-bind="computeRow(activity.categoryId)"></td>
+                        <td class="cell-points total-{{activity.activityId}}"></td>
                     </tr>
                     </tbody>
                 </table>

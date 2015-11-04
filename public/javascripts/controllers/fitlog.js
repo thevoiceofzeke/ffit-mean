@@ -19,13 +19,17 @@ var app = angular.module('fantasyFitness')
             $scope.lastEntry = $scope.fitlogs[$scope.fitlogs.length - 1];
             // Populate the inputs with data from the last log entry
             if ($scope.lastEntry.status == 'WORKING') {
-                console.log('status is working');
                 $('.input-number').each(function(index) {
                     $(this).val($scope.lastEntry.log[index].entryValue);
                 });
-                $scope.saveLog();
+                $('.row-activity').each(function() {
+                    var value = $(this).attr('data-activityValue');
+                    var activity = $(this).attr('data-activityId');
+                    $scope.updateRow(value, activity);
+                });
             }
         }).error(function(err, req, res) {console.log('FitlogService -- error retrieving logs: ' + '\nerr: ' + err + '\nreq body: ' + req.body + '\nres: ' + res.json);});
+
         // Update scope variables with current values in fields
         $scope.saveLog = function() {
             var recordedValues = [];
@@ -43,7 +47,6 @@ var app = angular.module('fantasyFitness')
                 totalPoints += (rowValue * Number(value));
                 recordedValues.push(entry);
             });
-            console.log(recordedValues + '\npoints: ' + totalPoints);
             $scope.recordedValues = recordedValues;
             $scope.totalPoints = totalPoints;
         };
@@ -66,8 +69,13 @@ var app = angular.module('fantasyFitness')
                 FitlogService.createLog(log);
             }
         };
-        $scope.computeRow = function(rowId) {
-            return rowId;
+        $scope.updateRow = function(pointVal, activity) {
+            var rowTotal = 0;
+            $('.row-'+activity+' :input').each(function() {
+                rowTotal += Number($(this).val());
+            });
+            $('.total-'+activity).html((pointVal*rowTotal));
+            $scope.saveLog();
         };
 
         //FitlogService.getLogs().success(function(data) {
@@ -83,76 +91,90 @@ var app = angular.module('fantasyFitness')
         // TODO: Replace hardcoded activities with a http.get from the database
         $scope.activitiesHourly = [
             {
-                "categoryId": 7000,
+                "activityId": 'pphhigh',
+                "activityValue": 7000,
                 "label": 'High Intensity (Hours)',
                 "description": 'Circuits, crossfit, spin class, sprints, HIIT, core exercises'
             },
             {
-                "categoryId": 5000,
+                "activityId": 'pphlow',
+                "activityValue": 5000,
                 "label": 'Low Intensity (Hours)',
                 "description": 'Weightlifting, yoga, swimming'
             },
             {
-                "categoryId": 3500,
+                "activityId": 'pphsport',
+                "activityValue": 3500,
                 "label": 'Sports (Hours)',
                 "description": 'Ultimate, goaltimate, soccer, basketball, rock climbing, downhill skiing, etc.'
             }
         ];
         $scope.activitiesIndividual = [
             {
-                "categoryId": 10,
-                "label": 'Push-ups Completed',
+                "activityId": 'pppu',
+                "activityValue": 10,
+                "label": 'Push-ups',
                 "description": 'Chest/shirt to ground. Push ups done from knees counts at 1/3 rate'
             },
             {
-                "categoryId": 50,
-                "label": 'Pull-ups Completed',
-                "description": 'Kipping counts at 1/3 rate'
+                "activityId": 'pphpu',
+                "activityValue": 50,
+                "label": 'Pull-ups, HPUs',
+                "description": 'HPU = Handstand push-up. Kipping counts at 1/3 rate'
             },
             {
-                "categoryId": 5,
-                "label": 'Air Squats Completed',
+                "activityId": 'ppsq',
+                "activityValue": 5,
+                "label": 'Air Squats',
                 "description": 'Butt below knees'
             },
             {
-                "categoryId": 50,
+                "activityId": 'ppqgi',
+                "activityValue": 50,
                 "label": 'Agility Ladder (Sets)',
                 "description": ''
             },
             {
-                "categoryId": 1000,
+                "activityId": 'ppmrun',
+                "activityValue": 1000,
                 "label": 'Running (Miles)',
                 "description": ''
             },
             {
-                "categoryId": 3500,
+                "activityId": 'ppmswim',
+                "activityValue": 3500,
                 "label": 'Swimming (Miles)',
                 "description": ''
             },
             {
-                "categoryId": 250,
+                "activityId": 'ppmcyc',
+                "activityValue": 250,
                 "label": 'Cycling (Miles)',
                 "description": ''
             },
             {
-                "categoryId": 250,
+                "activityId": 'ppmrow',
+                "activityValue": 250,
                 "label": 'Rowing (Kilometers)',
                 "description": ''
             }
         ];
         $scope.activitiesBonus = [
             {
-                "categoryId": 1000,
+                "activityId": 'bonstr',
+                "activityValue": 1000,
                 "label": 'Stretching Bonus',
                 "description": 'Must stretch for at least 10 minutes. Practicing yoga also achieves this bonus. Record number of days (1-7)'
             },
             {
-                "categoryId": 5000,
+                "activityId": 'bonh2h',
+                "activityValue": 5000,
                 "label": 'Head-to-Head',
                 "description": 'Reserved for additional head-to-head challenge calculations'
             },
             {
-                "categoryId": 1500,
+                "activityId": 'bontbt',
+                "activityValue": 1500,
                 "label": 'Tabata Challenges',
                 "description": 'May be completed ONCE per day'
             }
