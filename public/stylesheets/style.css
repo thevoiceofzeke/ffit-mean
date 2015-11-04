@@ -133,6 +133,12 @@
     vertical-align: middle;
     font-weight: bold;
   }
+  /* TABATAS */
+  /* ================= */
+  ol.list-tabatas li {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
   /*.table-log .table tbody > tr > td:not(.label-activity) {*/
   /*width: 6%;*/
   /*}*/

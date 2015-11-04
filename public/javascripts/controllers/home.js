@@ -5,7 +5,11 @@ var app = angular.module('fantasyFitness')
     .controller('HomeCtrl', ['$scope', 'posts', 'auth', function($scope, posts, auth) {
         $scope.isLoggedIn = auth.isLoggedIn;
 
-
+        $scope.tabs = [
+            { title: 'Da Rules',   content: '/templates/rules.html'   },
+            { title: 'Scoring', content: '/templates/scoring.html' },
+            { title: 'Bonuses', content: '/templates/bonuses.html' }
+        ];
         //$scope.posts = posts.posts;
         //$scope.test = 'hello';
         //$scope.addPost = function() {
