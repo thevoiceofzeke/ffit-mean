@@ -87,13 +87,16 @@ router.post('/:username/fitlog', function(req, res, next) {
 });
 
 // PUT updates in a worksheet with id
-//router.put('/:username/fitlog/:fitlog', fitlog, function(req, res, next) {
-//  req.fitlog.updateFitlog(function(err, fitlog) {
-//    if (err) { return next(err); }
-//
-//    res.json(fitlog);
-//  });
-//});
+router.put('/:username/fitlog/:fitlog', function(req, res, next) {
+  req.fitlog.update(function(err, fitlog) {
+    if (err) { return next(err); }
+    res.json(fitlog);
+  });
+  //req.fitlog.save(function(err,fitlog) {
+  //  if(err){ return next(err); }
+  //  res.json(fitlog);
+  //});
+});
 
 
 // POST to user registration

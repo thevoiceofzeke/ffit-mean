@@ -126,7 +126,12 @@ app.service('FitlogService', ['$http', 'auth', function($http, auth) {
 		});
 	};
 	this.saveLog = function(fitlog) {
-		return $http.post('/'+auth.getUserId()+'/fitlog', fitlog);
+		console.log('log id: ' + fitlog._id);
+		return $http.put('/'+auth.getUserId()+'/fitlog/'+fitlog._id, fitlog).success(function() {
+			console.log('success!!');
+		}).error(function(err) {
+			console.log('error!\n'+err);
+		});
 	};
 }]);
 

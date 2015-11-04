@@ -9,13 +9,14 @@ var FitlogSchema = new mongoose.Schema({
     totalPoints: Number
 });
 
-FitlogSchema.methods.updateFitlog = function(log) {
+FitlogSchema.methods.update = function(log) {
     this.log = log.log;
     this.totalPoints = log.totalPoints;
-    var today = new Date();
-    if (today > this.endDate) {
-        this.status = 'CLOSED';
-    }
+    this.save(log);
+    //var today = new Date();
+    //if (today > this.endDate) {
+    //    this.status = 'CLOSED';
+    //}
 };
 
 mongoose.model('Fitlog', FitlogSchema);
