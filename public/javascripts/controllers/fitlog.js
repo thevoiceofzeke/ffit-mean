@@ -19,13 +19,15 @@ var app = angular.module('fantasyFitness')
             $scope.lastEntry = $scope.fitlogs[$scope.fitlogs.length - 1];
             // Populate the inputs with data from the last log entry
             if ($scope.lastEntry.status == 'WORKING') {
-                console.log('status is working');
                 $('.input-number').each(function(index) {
                     $(this).val($scope.lastEntry.log[index].entryValue);
                 });
-                $scope.saveLog();
+                $('.row-activity').each(function() {
+                    $scope.updateRow($(this).attr('data-categoryId'));
+                });
             }
         }).error(function(err, req, res) {console.log('FitlogService -- error retrieving logs: ' + '\nerr: ' + err + '\nreq body: ' + req.body + '\nres: ' + res.json);});
+
         // Update scope variables with current values in fields
         $scope.saveLog = function() {
             var recordedValues = [];
@@ -43,7 +45,6 @@ var app = angular.module('fantasyFitness')
                 totalPoints += (rowValue * Number(value));
                 recordedValues.push(entry);
             });
-            console.log(recordedValues + '\npoints: ' + totalPoints);
             $scope.recordedValues = recordedValues;
             $scope.totalPoints = totalPoints;
         };
@@ -66,8 +67,13 @@ var app = angular.module('fantasyFitness')
                 FitlogService.createLog(log);
             }
         };
-        $scope.computeRow = function(rowId) {
-            return rowId;
+        $scope.updateRow = function(pointVal) {
+            var rowTotal = 0;
+            $('.row-'+pointVal+' :input').each(function() {
+                rowTotal += Number($(this).val());
+            });
+            $('.total-'+pointVal).html((pointVal*rowTotal));
+            $scope.saveLog();
         };
 
         //FitlogService.getLogs().success(function(data) {
@@ -101,23 +107,18 @@ var app = angular.module('fantasyFitness')
         $scope.activitiesIndividual = [
             {
                 "categoryId": 10,
-                "label": 'Push-ups Completed',
+                "label": 'Push-ups',
                 "description": 'Chest/shirt to ground. Push ups done from knees counts at 1/3 rate'
             },
             {
                 "categoryId": 50,
-                "label": 'Pull-ups Completed',
-                "description": 'Kipping counts at 1/3 rate'
+                "label": 'Pull-ups, Ladders',
+                "description": 'This row includes handstand push ups, pull ups, and agility ladder sets. Kipping counts at 1/3 rate'
             },
             {
                 "categoryId": 5,
-                "label": 'Air Squats Completed',
+                "label": 'Air Squats',
                 "description": 'Butt below knees'
-            },
-            {
-                "categoryId": 50,
-                "label": 'Agility Ladder (Sets)',
-                "description": ''
             },
             {
                 "categoryId": 1000,
@@ -131,13 +132,8 @@ var app = angular.module('fantasyFitness')
             },
             {
                 "categoryId": 250,
-                "label": 'Cycling (Miles)',
-                "description": ''
-            },
-            {
-                "categoryId": 250,
-                "label": 'Rowing (Kilometers)',
-                "description": ''
+                "label": 'Cycling, Rowing',
+                "description": 'Cycling is measured in miles, rowing in kilometers'
             }
         ];
         $scope.activitiesBonus = [
