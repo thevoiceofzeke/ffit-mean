@@ -1,23 +1,5 @@
 var app = angular.module('fantasyFitness', ['ui.router']);
 
-app.controller('MainCtrl', ['$scope', 'posts', 'auth', function($scope, posts, auth) {
-	$scope.isLoggedIn = auth.isLoggedIn;
-	$scope.posts = posts.posts;
-	$scope.test = 'hello';
-	$scope.addPost = function() {
-		if(!$scope.title || $scope.title === '') { return; }
-		  posts.create({
-		    title: $scope.title,
-		    link: $scope.link
-		  });
-		  $scope.title = '';
-		  $scope.link = '';
-	};
-	$scope.incrementUpvotes = function(post) {
-		posts.upvote(post);
-	};
-}]);
-
 app.controller('PostsCtrl', ['$scope', 'posts', 'post', 'auth', function($scope, posts, post, auth) {
 	$scope.isLoggedIn = auth.isLoggedIn;
 	$scope.post = post;
@@ -34,32 +16,6 @@ app.controller('PostsCtrl', ['$scope', 'posts', 'post', 'auth', function($scope,
 	$scope.incrementUpvotes = function(comment){
   		posts.upvoteComment(post, comment);
 	};
-}]);
-
-app.controller('AuthCtrl', ['$scope', '$state', 'auth', function($scope, $state, auth){
-  $scope.user = {};
-
-  $scope.register = function(){
-    auth.register($scope.user).error(function(error) {
-		$scope.error = error;
-    }).then(function(){
-      $state.go('home');
-    });
-  };
-
-  $scope.logIn = function(){
-    auth.logIn($scope.user).error(function(error){
-      $scope.error = error;
-    }).then(function(){
-      $state.go('home');
-    });
-  };
-}]);
-
-app.controller('NavCtrl', ['$scope', 'auth', function($scope, auth) {
-  $scope.isLoggedIn = auth.isLoggedIn;
-  $scope.currentUser = auth.currentUser;
-  $scope.logOut = auth.logOut;
 }]);
 
 // POSTS SERVICE
@@ -131,9 +87,15 @@ app.factory('auth', ['$http', '$window', function($http, $window){
 	  if(auth.isLoggedIn()){
 	    var token = auth.getToken();
 	    var payload = JSON.parse($window.atob(token.split('.')[1]));
-
 	    return payload.username;
 	  }
+	};
+	auth.getUserId = function() {
+		if (auth.isLoggedIn()) {
+			var token = auth.getToken();
+			var payload = JSON.parse($window.atob(token.split('.')[1]));
+			return payload._id;
+		}
 	};
 	auth.register = function(user) {
 	  return $http.post('/register', user).success(function(data){
@@ -151,12 +113,28 @@ app.factory('auth', ['$http', '$window', function($http, $window){
   return auth;
 }]);
 
+app.service('FitlogService', ['$http', 'auth', function($http, auth) {
+	this.createLog = function(fitlog) {
+		return $http.post('/'+auth.getUserId()+'/fitlog', fitlog);
+	};
+	this.getLogs = function() {
+		return $http.get('/'+auth.getUserId()+'/fitlog');
+	};
+	this.getLogById = function(logId) {
+		return $http.get('/'+auth.getUserId()+'/fitlog/'+logId).then(function(res) {
+			return res.data;
+		});
+	};
+	this.saveLog = function(fitlog) {
+		return $http.post('/'+auth.getUserId()+'/fitlog', fitlog);
+	};
+}]);
+
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 	$stateProvider
 		.state('home', {
 		  url: '/home',
 		  templateUrl: 'templates/home.html',
-		  controller: 'MainCtrl',
 		  resolve: {
 		    postPromise: ['posts', function(posts){
 		      return posts.getAll();
@@ -166,6 +144,19 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		.state('scoreboard', {
 			url: '/scoreboard',
 			templateUrl: '/templates/scoreboard.html'
+		})
+		.state('matchup', {
+			url: '/matchup',
+			templateUrl: '/templates/matchup.html'
+		})
+		.state('fitlog', {
+			url: '/{id}/fitlog',
+			templateUrl: '/templates/fitlog.html'
+			//resolve: {
+			//	worksheet: ['$stateParams', 'worksheets', function($stateParams, worksheets) {
+			//		return worksheets.get($stateParams.id);
+			//	}]
+			//}
 		})
 		.state('posts', {
 		  url: '/posts/{id}',
@@ -179,8 +170,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		})
 		.state('login', {
 		  url: '/login',
-		  templateUrl: '/login.html',
-		  controller: 'AuthCtrl',
+		  templateUrl: '/templates/login.html',
 		  onEnter: ['$state', 'auth', function($state, auth){
 		    if(auth.isLoggedIn()){
 		      $state.go('home');
@@ -189,8 +179,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		})
 		.state('register', {
 		  url: '/register',
-		  templateUrl: '/register.html',
-		  controller: 'AuthCtrl',
+		  templateUrl: '/templates/register.html',
 		  onEnter: ['$state', 'auth', function($state, auth){
 		    if(auth.isLoggedIn()){
 		      $state.go('home');

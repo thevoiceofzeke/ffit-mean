@@ -5,4 +5,3 @@ var app = angular.module('fantasyFitness')
 .controller('ScoreCtrl', ['$scope', function($scope) {
     $scope.pageName = 'scoreboard';
 }]);
-

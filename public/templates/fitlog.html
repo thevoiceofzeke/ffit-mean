@@ -1,3 +1,69 @@
-<div ng-controller="LogCtrl">
-    workout log form
+<div class="view-log" ng-controller="FitlogCtrl">
+    <form ng-submit="submitLog()">
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <h2>Activity Log <br> <small>{{ dateRange[0] | date: 'mediumDate' }} - {{ dateRange[1] | date: 'mediumDate' }}</small></h2>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <ul class="menu-actions pull-right">
+                <li><a class="btn btn-save btn-primary" ng-click="saveLog()">Save</a></li>
+                <li><button type="submit" class="btn btn-submit btn-success">Submit</button></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <p>Total points this week: {{ totalPoints | number:0 }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-log table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th class="empty"></th>
+                        <th ng-repeat="date in dates"><span class="label-day">{{ date | date: 'EEE' }}</span><br>
+                            <span class="label-date">{{ date | date: 'MM/dd' }}</span></th>
+                        <th class="label-points">Points</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr><td colspan="9" class="label-section"><h4>Hourly</h4></td></tr>
+                    <tr ng-repeat="activity in activitiesHourly" class="row-activity" data-categoryId="{{ activity.categoryId }}">
+                        <td class="cell-activity"><span class="label-category">{{ activity.label }}</span>
+                            <br><span class="label-description">{{ activity.description }}</span></td>
+                        <td class="cell-number" ng-repeat="date in dates">
+                            <input data-pointsvalue="{{ activity.categoryId }}"
+                                   class="form-control input-number"
+                                   type="number">
+                        </td>
+                        <td class="cell-points" ng-bind="computeRow(activity.categoryId)"></td>
+                    </tr>
+                    <tr><td colspan="9" class="label-section"><h4>Individual Movements</h4></td></tr>
+                    <tr ng-repeat="activity in activitiesIndividual" class="row-activity" data-categoryId="{{ activity.categoryId }}">
+                        <td class="cell-activity"><span class="label-category">{{ activity.label }}</span>
+                            <br><span class="label-description">{{ activity.description }}</span></td>
+                        <td class="cell-number" ng-repeat="date in dates">
+                            <input data-pointsvalue="{{ activity.categoryId }}"
+                                   class="form-control input-number"
+                                   type="number"></td>
+                        <td class="cell-points" ng-bind="computeRow(activity.categoryId)"></td>
+                    </tr>
+                    <tr><td colspan="9" class="label-section"><h4>Bonuses</h4></td></tr>
+                    <tr ng-repeat="activity in activitiesBonus" class="row-activity" data-categoryId="{{ activity.categoryId }}">
+                        <td class="cell-activity"><span class="label-category">{{ activity.label }}</span>
+                            <br><span class="label-description">{{ activity.description }}</span></td>
+                        <td class="cell-number" ng-repeat="date in dates">
+                            <input data-pointsvalue="{{ activity.categoryId }}"
+                                   class="form-control input-number"
+                                   type="number"></td>
+                        <td class="cell-points" ng-bind="computeRow(activity.categoryId)"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </form>
 </div>

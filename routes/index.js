@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
 var User = mongoose.model('User');
+var Fitlog = mongoose.model('Fitlog');
 var passport = require('passport');
 var jwt = require('express-jwt');
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
@@ -35,64 +36,65 @@ router.param('comment', function(req, res, next, id) {
   });
 });
 
+router.param('username', function(req, res, next, id) {
+  var query = User.findById(id);
+  query.exec(function(err, username) {
+    if (err) {return next(err); }
+    if (!username) {return next(new Error('can\'t find user'));}
+    req.username = username;
+    return next();
+  })
+});
+
+router.param('fitlog', function(req, res, next, id) {
+  var query = Fitlog.findById(id);
+  query.exec(function(err, fitlog) {
+    if (err) {return next(err);}
+    if (!fitlog) {return next(new Error('can\'t find log'));}
+    req.fitlog = fitlog;
+    return next();
+  });
+});
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Fantasy Fitness' });
 });
-//router.get('/scoreboard', function(req, res, next) {
-//  // DO STUFF RELATED TO SCOREBOARD
+
+// GET all weekly worksheets for current user
+router.get('/:username/fitlog', function(req, res, next) {
+  Fitlog.find(function(err, logs) {
+    if (err) {
+      return next(err);
+    }
+    res.json(logs);
+  });
+});
+
+// GET a weekly worksheet with id
+router.get('/:username/fitlog/:fitlog', function(req, res, next) {
+  res.json(fitlog);
+});
+
+// POST a worksheet to the db
+router.post('/:username/fitlog', function(req, res, next) {
+  var fitlog = new Fitlog(req.body);
+  fitlog.save(function(err,fitlog) {
+    if(err){ return next(err); }
+    res.json(fitlog);
+  });
+});
+
+// PUT updates in a worksheet with id
+//router.put('/:username/fitlog/:fitlog', fitlog, function(req, res, next) {
+//  req.fitlog.updateFitlog(function(err, fitlog) {
+//    if (err) { return next(err); }
+//
+//    res.json(fitlog);
+//  });
 //});
 
-// GET posts page
-router.get('/posts', function(req, res, next) {
-  Post.find(function(err, posts){
-    if(err){ 
-      return next(err); 
-    }
-
-    res.json(posts);
-  });
-});
-
-// GET a post with id
-router.get('/posts/:post', function(req, res, next) {
-  req.post.populate('comments', function(err, post) {
-    if (err) {
-      return next(err); 
-    }
-
-    res.json(post);
-  });
-});
-
-// POST a post to ff_db
-router.post('/posts', auth, function(req, res, next) {
-  var post = new Post(req.body);
-  post.author = req.payload.username;
-  post.save(function(err, post){
-    if(err){ return next(err); }
-
-    res.json(post);
-  });
-});
-
-// POST a comment to ff_db
-router.post('/posts/:post/comments', auth, function(req, res, next) {
-  var comment = new Comment(req.body);
-  comment.post = req.post;
-  comment.author = req.payload.username;
-
-  comment.save(function(err, comment){
-    if(err){ return next(err); }
-
-    req.post.comments.push(comment);
-    req.post.save(function(err, post) {
-      if(err){ return next(err); }
-
-      res.json(comment);
-    });
-  });
-});
 
 // POST to user registration
 router.post('/register', function(req, res, next){
@@ -127,6 +129,56 @@ router.post('/login', function(req, res, next){
       return res.status(401).json(info);
     }
   })(req, res, next);
+});
+
+// GET posts page
+router.get('/posts', function(req, res, next) {
+  Post.find(function(err, posts){
+    if(err){
+      return next(err);
+    }
+
+    res.json(posts);
+  });
+});
+// GET a post with id
+router.get('/posts/:post', function(req, res, next) {
+  req.post.populate('comments', function(err, post) {
+    if (err) {
+      return next(err);
+    }
+
+    res.json(post);
+  });
+});
+
+// POST a post to ff_db
+router.post('/posts', auth, function(req, res, next) {
+  var post = new Post(req.body);
+  post.author = req.payload.username;
+  post.save(function(err, post){
+    if(err){ return next(err); }
+
+    res.json(post);
+  });
+});
+
+// POST a comment to ff_db
+router.post('/posts/:post/comments', auth, function(req, res, next) {
+  var comment = new Comment(req.body);
+  comment.post = req.post;
+  comment.author = req.payload.username;
+
+  comment.save(function(err, comment){
+    if(err){ return next(err); }
+
+    req.post.comments.push(comment);
+    req.post.save(function(err, post) {
+      if(err){ return next(err); }
+
+      res.json(comment);
+    });
+  });
 });
 
 // PUT an upvote on a post

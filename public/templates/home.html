@@ -1,43 +1,139 @@
-<div ng-controller="MainCtrl">
+<div ng-controller="HomeCtrl">
     <div class="page-header">
         <h1>Fantasy Fitness</h1>
     </div>
 
-    <div ng-repeat="post in posts | orderBy: '-upvotes'">
-        <span ng-click="incrementUpvotes(post)" class="glyphicon glyphicon-thumbs-up"></span>
-        {{post.upvotes}}
-				<span style="font-size:20px;margin-left:10px;">
-					<a ng-show="post.link" href="{{post.link}}">
-                        {{post.title}}
-                    </a>
-					<span ng-hide="post.link">
-						{{post.title}}
-					</span>
-				</span>
-				<span>
-					<a href="#/posts/{{post._id}}">Comments</a>
-				</span>
-				<span ng-show="post.author">
-  					posted by <a>{{post.author}}</a> |
-				</span>
-    </div>
-    <div ng-hide="isLoggedIn()">
-        <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.</h3>
-    </div>
-    <form ng-submit="addPost()" ng-show="isLoggedIn()" style="margin-top:30px;">
-        <h3>Add new post</h3>
-        <div class="form-group">
-            <input type="text"
-                   placeholder="Title"
-                   ng-model="title"
-                   class="form-control"></input>
-        </div>
-        <div class="form-group">
-            <input type="text"
-                   placeholder="Link"
-                   ng-model="link"
-                   class="form-control"></input>
-        </div>
-        <button type="submit" class="btn btn-primary">Post</button>
-    </form>
+
+    Fantasy Fitness League
+
+    Da Rules
+
+    Good Spirit
+    Much like during the regular ultimate season, a lot of this is relying on people having good spirit and reporting in good faith. It would be extremely hard to verify that you’re not cheating and ain’t nobody got time for that. Be reasonable about how you do your rounding. If you feel justified in reporting a stat a certain way, then go ahead and do so. If you’re uncertain, feel free to contact me to verify/clarify. The punishment for playing with bad spirit is relentless heckling. Oh, and don’t be taking steroids or blood doping.
+
+    Games
+    Each week you will be pitted against another player. There is no draft or substituting; you play for yourself and you play to win. Games run from Monday morning to Sunday evening. there will be a downtime on Sundays from 8 P.M. to midnight where I will be tallying scores and other maintenance. You can earn points during this time, even if your opponent hasn’t been determined yet, but it will be for the following week and you will have to wait until I activate the form again. You’ll be adding your movement counts/activity hours to a google form where the calculations will be done for you and displayed on a read only scoreboard spreadsheet. It is HIGHLY suggested that you log your workouts daily instead of trying to do it all on Sunday. If you can’t remember how you scored on something, then you should forfeit those points instead of guessing.
+
+    Match Ups
+    We will be running with a normal league play for simplicity sake. Future iterations of this may include more sophisticated match ups.
+
+    Rewards/Compensations/Penalties
+    There are no prizes or punishments for participating in this. I don’t feel like handling people’s money for this nor do I want to tempt people to cheat since this is such an honor based competition. I have no idea how I would enforce any punishments anyhow.
+
+
+    Scoring
+
+    Individual Movements
+    These should help you pad your score for some quick points. While you can create your own workout routine based on these movements, you will likely find that points can be earned faster through other means.
+    Distances can be calculated to the decimal point if you so desire. (i.e. If you run for 2.6 miles, you earn 2600 points.)
+    Discrete movements can be accumulated throughout the day. (i.e. every time you go to the bathroom, do 10 push ups (Also known as “piss ups”))
+
+    Push Ups: 10 Points Each
+    Chest to ground push ups. At the very least, your shirt (or chest hair) should make contact.
+
+    Handstand Push Ups/Pull Ups: 50 Points Each
+    Handstand push ups may be done with a wall for balance or free standing if you have the balance for it.
+    “Kipping” HPU/PUs are worth ⅓ the value. (i.e. 6 pull ups + 2 kipping pull ups = [6 + 3* ⅓]*50 = [6+.6]*50 = 6.6*50 = 350 points)
+
+    Air Squats: 5 Points Each
+    Hip crease below knee crease
+
+    Agility Ladders: 50 Points Each
+
+    Miles Ran: 1000 Points Each
+    Treadmill is useful since it will tell you how far you ran. Otherwise, use a route tracking app or fitbit-like technology to track distance ran.
+    You don’t necessarily have to be “running” the entire time, if you walk part of your route, that’s fine. You don’t get to count the steps you take walking around the office.
+    No bonuses awarded for inclined running, trail running or otherwise. Highly encouraged to do so anyway for bragging rights.
+    Cross-country skiing and other variations fall under this category as well. Downhill skiing does not.
+
+    Miles Swam: 3500 Points Each
+    Figure out the length of your pool and determine how far you swam based on laps.
+
+    Miles Biked: 250 Points Each
+    Stationary bike counts. No bonuses are applied for using resistance.
+    Track using a route tracking app to figure out distances if not using a stationary, don’t just estimate it.
+    Commuting/transportation counts. You don’t have to keep tracking the route if you do the same route frequently (i.e. commuting to work from home or going to your favorite bar from your home).
+    Use common sense and have good spirit with this one guys.
+
+    Kilometers Rowed: 250 Points Each
+    Use a rowing machine to track distance. I have no idea how to calculate in-water rowing.
+    Don’t question why this one is using the metric system.
+
+
+    Activities
+    This is meant to encompass what cannot be discretely measured. No double counting; you can’t accumulate points from your movements and your activities simultaneously. (i.e. if you do a spin class, you can either get the points per hour of class, OR by distance biked, but not both. If you do a bunch of push ups/pull ups for crossfit, you can’t add those to your daily count). You are likely to earn more points at the hourly rate than you are at the discrete counting rate. This is likely where you will earn the majority of your points.Be reasonable and have good spirit here. Most training regimens are based on an hour long session. If you take 90 minutes because you’re gabbing with your lifting buddy, you should only count it as 1 hour. Alternatively, if you beast mode your way through the workout and complete it in 45 minutes, you can still count it as an hour. If the lifting regimen is supposed to take 90 minutes, then go ahead and enter it as 1.5 hours. Basically, count it based on your program’s suggested time. If you’re making it up yourself, be fair.
+
+
+    High intensity exercise: 7000 Points Each Hour
+    This is meant to encapsulate things that are high cardio exercises like circuit classes, crossfit, spin class, sprints, high intensity interval training, core exercises.
+
+    Low Intensity exercise: 5000 Points Each Hour
+    This is meant to encapsulate things that are low cardio exercises like weightlifting and yoga.
+    Some yoga classes are labeled along the lines of “Power Up” and are actually more like a high intensity circuit or fitness class. Feel free to count them as such instead. Use discretion wisely.
+    Please ask me clarifying questions about this if you need to. I feel like it’s pretty self-explanatory but I may be wrong.
+
+    Hours general sporting: 3500 Points Each
+    If you are playing a sport (indoor ultimate, goalti, indoor soccer) or anything that doesn’t fit into the previously mentioned categories then you should count it by the hours played (to the quarter hour if possible).
+    The point value is low because you will likely spend much time on the sideline and this is also not “focused” exercise either; you gain more from 20 minutes of intense conditioning than an hour of play.
+    If it’s something that has a set time (like a soccer game) count it by how long the game was: two 45 minutes halves means you played for 90 minutes/1.5 hours.
+    If it’s something that plays until you finish, be reasonable and make your best guess for how long you played.
+    If you are bored on the sideline and feel like boosting your points, you are encouraged to do push ups. The double counting exclusion rule doesn’t apply here like it would in the other activity categories.
+
+    Bonuses
+
+    Tabata Challenges: 1500 per day
+    You can only complete the tabata challenge once per day. It is meant to be a good way to top off your exercise for the day since it only takes 4 minutes.
+    There will be a set of approved Tabata challenges to choose from linked out from the form. There should be multiple to choose from since you probably don’t want to do the same challenge 7 days in a row and destroy one muscle group. I encourage you to submit challenges yourself if you would like to see them and I will incorporate them in future games.
+    Tabata challenges consist of 8 rounds of 20 seconds on and 10 seconds recovery.
+    This is probably a new concept for many of you. I highly encourage you to google the tabata methodology for yourselves to learn the procedure, theory, and benefits. It is a form of HIIT (high intensity interval training) which helps with recovery (very useful in ultimate since we do lots of sprinting). It is also touted as a phenomenal way to burn fat due to EPOC (excess post-exercise oxygen consumption). EPOC basically means your metabolism shoots through the roof because your muscles are still trying to gather oxygen hours after you have finished exercising.
+
+    Stretching: 1000 points per day
+    You can only do this once per day generally, try to do this after your workout.
+    You must stretch for at least 10 minutes to earn this bonus
+    If yoga is part of your workout that day, then you can count this bonus for the day without spending an extra 10 minutes stretching just to earn the bonus.
+
+    Head-to-head Challenges: 5000 points
+    Each week there will be a different challenge against your opponent. These will be explained each week.
+    Examples: Most push ups, most miles ran, scored higher on tabata challenges.
+    These will be added manually during the downtime period when I’m doing weekly maintenance.
+    Sometimes these will require you to fill in data yourself (such as tabata challenge scores) and sometimes these will happen automatically based on other fields (such as push ups and miles ran).
+
+
+    <!--<div ng-repeat="post in posts | orderBy: '-upvotes'">-->
+        <!--<span ng-click="incrementUpvotes(post)" class="glyphicon glyphicon-thumbs-up"></span>-->
+        <!--{{post.upvotes}}-->
+				<!--<span style="font-size:20px;margin-left:10px;">-->
+					<!--<a ng-show="post.link" href="{{post.link}}">-->
+                        <!--{{post.title}}-->
+                    <!--</a>-->
+					<!--<span ng-hide="post.link">-->
+						<!--{{post.title}}-->
+					<!--</span>-->
+				<!--</span>-->
+				<!--<span>-->
+					<!--<a href="#/posts/{{post._id}}">Comments</a>-->
+				<!--</span>-->
+				<!--<span ng-show="post.author">-->
+  					<!--posted by <a>{{post.author}}</a> |-->
+				<!--</span>-->
+    <!--</div>-->
+    <!--<div ng-hide="isLoggedIn()">-->
+        <!--<h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.</h3>-->
+    <!--</div>-->
+    <!--<form ng-submit="addPost()" ng-show="isLoggedIn()" style="margin-top:30px;">-->
+        <!--<h3>Add new post</h3>-->
+        <!--<div class="form-group">-->
+            <!--<input type="text"-->
+                   <!--placeholder="Title"-->
+                   <!--ng-model="title"-->
+                   <!--class="form-control"></input>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<input type="text"-->
+                   <!--placeholder="Link"-->
+                   <!--ng-model="link"-->
+                   <!--class="form-control"></input>-->
+        <!--</div>-->
+        <!--<button type="submit" class="btn btn-primary">Post</button>-->
+    <!--</form>-->
 </div>
